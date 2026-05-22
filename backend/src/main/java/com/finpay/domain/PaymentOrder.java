@@ -4,11 +4,14 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import lombok.Getter;
+
+@Getter
 public class PaymentOrder {
-    private String id;
-    private BigDecimal amount;
+    private final String id;
+    private final BigDecimal amount;
     private PaymentStatus status;
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
 
     public PaymentOrder(BigDecimal amount) {
         this.id = UUID.randomUUID().toString();
@@ -29,22 +32,6 @@ public class PaymentOrder {
             throw new IllegalStateException("Cannot cancel a PAID or already cancelled order");
         }
         this.status = PaymentStatus.CANCELLED;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public PaymentStatus getStatus() {
-        return status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
     }
 
     @Override

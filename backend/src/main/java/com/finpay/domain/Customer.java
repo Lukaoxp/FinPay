@@ -3,11 +3,14 @@ package com.finpay.domain;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import lombok.Getter;
+
+@Getter
 public class Customer {
-    private String id;
+    private final String id;
     private String name;
     private String email;
-    private LocalDateTime createdAt;
+    private final LocalDateTime createdAt;
 
     public Customer(String name, String email) {
         this.id = UUID.randomUUID().toString();
@@ -16,24 +19,8 @@ public class Customer {
         this.createdAt = LocalDateTime.now();
     }
 
-    public boolean isValidEmail() {
+    public static boolean isValidEmail(String email) {
         return email.contains("@") && email.contains(".");
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
     }
 
     @Override
